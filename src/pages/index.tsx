@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Nextjs</title>
+        <title>TMDB</title>
       </Head>
 
       <h1>Hello World</h1>
