@@ -15,6 +15,7 @@ export const Container = styled.div`
     flex-direction: column;
 
     span {
+      text-transform: uppercase;
       font-size: 14px;
       font-weight: 700;
       color: ${props => props.theme.colors.gray300};

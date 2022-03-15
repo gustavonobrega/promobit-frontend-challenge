@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface FilterButtonProps {
+  selected: boolean;
+}
 
 export const Container = styled.div`
   width: 100%;
@@ -28,32 +32,47 @@ export const FilterMovies = styled.div`
     color: ${props => props.theme.colors.white};
     text-transform: uppercase;
   }
+
+  ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    max-width: 1216px;
+    margin-top: 16px;
+    list-style: none;
+  }
 `;
 
-export const FilterButtons = styled.ul`
+export const FilterButton = styled.button<FilterButtonProps>`
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
 
-  max-width: 1216px;
-  margin-top: 16px;
-  list-style: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 0;
+  font-weight: 700;
+  color: ${props => props.theme.colors.gray700};
+  background: ${props => props.theme.colors.white};
+  cursor: pointer;
+  transition: 0.5s;
 
-  button {
-    padding: 8px 16px;
-    border-radius: 4px;
-    border: 0;
-    font-weight: 700;
-    color: ${props => props.theme.colors.gray700};
-    background: ${props => props.theme.colors.white};
-    cursor: pointer;
-    transition: 0.5s;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
+  &:hover {
+    filter: brightness(0.9);
   }
+
+  svg {
+    margin-left: 9px;
+  }
+
+  ${props =>
+    props.selected &&
+    css`
+      background: ${props.theme.colors.orange};
+      color: ${props.theme.colors.white};
+    `}
 `;
 
 export const Movies = styled.div`

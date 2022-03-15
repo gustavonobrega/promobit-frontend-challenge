@@ -1,16 +1,19 @@
 import { Container } from './styles';
 
-export function MovieCard() {
+interface MovieCardProps {
+  title: string;
+  releaseDate: string;
+  imgUrl: string;
+}
+
+export function MovieCard({ title, releaseDate, imgUrl }: MovieCardProps) {
   return (
     <Container>
-      <img
-        src="https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
-        alt="Spider-man no way home"
-      />
+      <img src={`https://image.tmdb.org/t/p/w500/${imgUrl}`} alt={title} />
 
       <div>
-        <strong>Spider-Man: No Way Home</strong>
-        <span>15 DEZ 2021</span>
+        <strong>{title}</strong>
+        <span>{releaseDate}</span>
       </div>
     </Container>
   );
