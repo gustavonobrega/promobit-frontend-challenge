@@ -59,8 +59,13 @@ export const FilterButton = styled.button<FilterButtonProps>`
   cursor: pointer;
   transition: 0.5s;
 
-  &:hover {
+  &:not(:disabled):hover {
     filter: brightness(0.9);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 
   svg {
@@ -76,6 +81,11 @@ export const FilterButton = styled.button<FilterButtonProps>`
 `;
 
 export const Movies = styled.div`
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   max-width: 1216px;
   margin: 29px auto;
 
@@ -85,5 +95,29 @@ export const Movies = styled.div`
 
   @media (max-width: 1000px) {
     justify-content: center;
+  }
+`;
+
+export const Loading = styled.div`
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    width: 80px;
+    height: 80px;
+  }
+`;
+
+export const Error = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    color: ${props => props.theme.colors.darkPurple};
   }
 `;

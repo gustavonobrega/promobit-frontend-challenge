@@ -9,6 +9,6 @@ export default createGlobalStyle`
 
   body {
     background: ${props => props.theme.colors.gray100};
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 `;
