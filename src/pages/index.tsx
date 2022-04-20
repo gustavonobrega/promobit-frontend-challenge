@@ -123,7 +123,13 @@ export default function Home({ genres }: HomeProps) {
         </Movies>
       )}
 
-      {data && <Pagination />}
+      {data && (
+        <Pagination
+          lastPage={data?.totalPages}
+          currentPage={page}
+          onPageChange={setPage}
+        />
+      )}
     </Container>
   );
 }

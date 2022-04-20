@@ -2,6 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   max-width: 176px;
+  transition: 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   img {
     width: 100%;

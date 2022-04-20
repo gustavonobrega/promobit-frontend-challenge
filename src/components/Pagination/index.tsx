@@ -1,7 +1,17 @@
 import { useState } from 'react';
 import { Container, PaginationItem } from './styles';
 
-export function Pagination({}: PaginationProps) {
+interface PaginationProps {
+  lastPage?: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+}
+
+export function Pagination({
+  lastPage,
+  currentPage,
+  onPageChange
+}: PaginationProps) {
   const [isCurrent, setIsCurrent] = useState(true);
 
   return (
