@@ -40,11 +40,11 @@ interface HomeProps {
 export default function Home({ genres }: HomeProps) {
   const [page, setPage] = useState(1);
   const [moviesByGenre, setMoviesByGenre] = useState<Movie[] | undefined>([]);
-  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
 
   const { data, isLoading, error } = useMovies(page);
 
-  function handleFilterMoviesByGenre(id: any) {
+  function handleFilterMoviesByGenre(id: number) {
     if (selectedGenre === id) {
       setSelectedGenre(null);
     } else {
@@ -98,7 +98,7 @@ export default function Home({ genres }: HomeProps) {
         <Movies>
           {selectedGenre
             ? moviesByGenre?.map(movie => (
-                <Link key={movie.id} href={`/movies/${movie.id}`}>
+                <Link key={movie.id} href={`/movie/${movie.id}`}>
                   <a>
                     <MovieCard
                       title={movie.title}
@@ -109,10 +109,9 @@ export default function Home({ genres }: HomeProps) {
                 </Link>
               ))
             : data?.movies.map(movie => (
-                <Link key={movie.id} href={`/movies/${movie.id}`}>
+                <Link key={movie.id} href={`/movie/${movie.id}`}>
                   <a>
                     <MovieCard
-                      key={movie.title}
                       title={movie.title}
                       releaseDate={movie.release_date}
                       imgUrl={movie.poster_path}

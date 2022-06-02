@@ -10,7 +10,6 @@ export const Container = styled.div`
 `;
 
 export const FilterMovies = styled.div`
-  width: 100%;
   height: 456px;
   background: ${props => props.theme.colors.darkPurple};
 
@@ -87,13 +86,16 @@ export const Movies = styled.div`
   }
 
   max-width: 1216px;
+  width: 100%;
+
   margin: 29px auto;
 
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1300px) {
+    padding: 0 30px;
     justify-content: center;
   }
 `;
