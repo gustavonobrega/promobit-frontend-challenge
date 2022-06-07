@@ -27,4 +27,20 @@ export const Container = styled.div`
       color: ${props => props.theme.colors.gray300};
     }
   }
+
+  @media (max-width: 600px) {
+    max-width: 156px;
+
+    div {
+      line-height: 20px;
+
+      strong {
+        font-size: 14px;
+      }
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
 `;

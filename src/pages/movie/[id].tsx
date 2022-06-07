@@ -81,9 +81,9 @@ export default function Movie({
 
             <div>
               <span>
-                {movie.certification ? `${movie.certification} anos •` : ''}
+                {movie.certification ? `${movie.certification} anos` : ''}
               </span>
-              <span> {movie.release_date} </span>
+              <span> • {movie.release_date} </span>
               {movie.genres.map(genre => (
                 <span>• {genre.name}, </span>
               ))}
@@ -142,8 +142,6 @@ export default function Movie({
           <h1>Trailer</h1>
 
           <iframe
-            width="907"
-            height="510"
             src={`https://www.youtube.com/embed/${movieTrailer.key}`}
             title={movieTrailer.name}
             frameBorder="0"

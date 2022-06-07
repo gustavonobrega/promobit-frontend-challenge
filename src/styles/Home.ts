@@ -11,6 +11,7 @@ export const Container = styled.div`
 
 export const FilterMovies = styled.div`
   height: 456px;
+  padding: 40px 16px;
   background: ${props => props.theme.colors.darkPurple};
 
   display: flex;
@@ -41,6 +42,19 @@ export const FilterMovies = styled.div`
     max-width: 1216px;
     margin-top: 16px;
     list-style: none;
+  }
+
+  @media (max-width: 600px) {
+    align-items: flex-start;
+
+    h1 {
+      text-align: start;
+      font-size: 24px;
+    }
+
+    ul {
+      justify-content: flex-start;
+    }
   }
 `;
 
@@ -77,26 +91,35 @@ export const FilterButton = styled.button<FilterButtonProps>`
       background: ${props.theme.colors.orange};
       color: ${props.theme.colors.white};
     `}
+
+  @media (max-width: 600px) {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
 `;
 
 export const Movies = styled.div`
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
   max-width: 1216px;
   width: 100%;
-
   margin: 29px auto;
 
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   @media (max-width: 1300px) {
     padding: 0 30px;
     justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    gap: 16px;
+    padding: 0 16px;
   }
 `;
 

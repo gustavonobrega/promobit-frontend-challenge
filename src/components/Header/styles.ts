@@ -10,8 +10,19 @@ export const Content = styled.div`
   max-width: 1216px;
   height: 100%;
   margin: 0 auto;
-  padding: 0 30px;
 
   display: flex;
   align-items: center;
+
+  @media (max-width: 1300px) {
+    padding: 0 30px;
+  }
+
+  @media (max-width: 600px) {
+    justify-content: center;
+
+    img {
+      width: 140px;
+    }
+  }
 `;
