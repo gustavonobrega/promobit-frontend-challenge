@@ -16,12 +16,7 @@ interface GetMoviesResponse {
 
 async function getMovies(page: number): Promise<GetMoviesResponse> {
   const { data } = await api.get(
-    `/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=pt-BR`,
-    {
-      params: {
-        page
-      }
-    }
+    `/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=pt-BR&page=${page}`
   );
 
   const totalPages = data.total_pages;
