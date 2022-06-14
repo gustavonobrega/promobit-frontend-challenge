@@ -1,5 +1,5 @@
 <h1 align='center'>
-    <img src="public/images/tmdb.svg" alt="TMDB logo">
+    <img src="public/images/tmdb-purple.svg" alt="TMDB logo">
 </h1>
 
 <p align="center">Promobit Front-end challenge</p>
