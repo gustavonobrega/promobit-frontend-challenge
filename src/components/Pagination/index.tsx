@@ -4,6 +4,7 @@ interface PaginationProps {
   lastPage: number;
   currentPage: number;
   onPageChange: (page: number) => void;
+  resetSelectedGenres: (selectedGenres: number[]) => void;
 }
 
 const maxPages = 5;
@@ -12,7 +13,8 @@ const maxLeftPages = (maxPages - 1) / 2;
 export function Pagination({
   lastPage,
   currentPage,
-  onPageChange
+  onPageChange,
+  resetSelectedGenres
 }: PaginationProps) {
   const maxFirstPage = Math.max(lastPage - (maxPages - 1), 1);
   const firstPage = Math.min(
@@ -24,6 +26,11 @@ export function Pagination({
     (_, index) => index + firstPage
   );
 
+  function handlePageChange(page: number) {
+    onPageChange(page);
+    resetSelectedGenres([]);
+  }
+
   return (
     <Container>
       {pagesArray.map(page => (
@@ -31,7 +38,7 @@ export function Pagination({
           <PaginationItem
             isCurrent={currentPage === page}
             disabled={currentPage === page}
-            onClick={() => onPageChange(page)}
+            onClick={() => handlePageChange(page)}
           >
             {page}
           </PaginationItem>
@@ -40,7 +47,7 @@ export function Pagination({
 
       {currentPage < lastPage && (
         <li>
-          <PaginationItem onClick={() => onPageChange(currentPage + 1)}>
+          <PaginationItem onClick={() => handlePageChange(currentPage + 1)}>
             <RightArrow />
           </PaginationItem>
         </li>
@@ -51,7 +58,7 @@ export function Pagination({
           <PaginationItem
             isCurrent={currentPage === lastPage}
             disabled={currentPage === lastPage}
-            onClick={() => onPageChange(lastPage)}
+            onClick={() => handlePageChange(lastPage)}
           >
             Última
           </PaginationItem>

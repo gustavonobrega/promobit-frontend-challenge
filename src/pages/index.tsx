@@ -40,20 +40,37 @@ interface HomeProps {
 export default function Home({ genres }: HomeProps) {
   const [page, setPage] = useState(1);
   const [moviesByGenre, setMoviesByGenre] = useState<Movie[] | undefined>([]);
-  const [selectedGenre, setSelectedGenre] = useState<number | null>(null);
+  const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
 
   const { data, isLoading, error } = useMovies(page);
 
-  function handleFilterMoviesByGenre(id: number) {
-    if (selectedGenre === id) {
-      setSelectedGenre(null);
+  function handleFilterMoviesByGenres(id: number) {
+    if (selectedGenres.includes(id)) {
+      const newSelectedGenres = selectedGenres.filter(
+        selected => selected !== id
+      );
+
+      setSelectedGenres(newSelectedGenres);
+
+      setMoviesByGenre(
+        moviesByGenre?.filter(movie =>
+          movie.genre_ids.find(genre => newSelectedGenres.includes(genre))
+        )
+      );
     } else {
       const filteredMovies = data?.movies.filter(movie =>
         movie.genre_ids.includes(id)
       );
 
-      setMoviesByGenre(filteredMovies);
-      setSelectedGenre(id);
+      const filterUniqueMovies = filteredMovies?.filter(movie =>
+        moviesByGenre?.every(m => m !== movie)
+      );
+
+      setMoviesByGenre(prevState => [
+        ...(prevState ?? []),
+        ...(filterUniqueMovies ?? [])
+      ]);
+      setSelectedGenres([...selectedGenres, id]);
     }
   }
 
@@ -73,13 +90,13 @@ export default function Home({ genres }: HomeProps) {
           {genres.map(genre => (
             <li key={genre.id}>
               <FilterButton
-                selected={selectedGenre === genre.id}
+                selected={selectedGenres.includes(genre.id)}
                 type="button"
-                onClick={() => handleFilterMoviesByGenre(genre.id)}
+                onClick={() => handleFilterMoviesByGenres(genre.id)}
                 disabled={isLoading || !!error}
               >
                 {genre.name}
-                {selectedGenre === genre.id && <AiFillCloseCircle />}
+                {selectedGenres.includes(genre.id) && <AiFillCloseCircle />}
               </FilterButton>
             </li>
           ))}
@@ -96,7 +113,7 @@ export default function Home({ genres }: HomeProps) {
         </Error>
       ) : (
         <Movies>
-          {selectedGenre
+          {selectedGenres.length !== 0
             ? moviesByGenre?.map(movie => (
                 <Link key={movie.id} href={`/movie/${movie.id}`}>
                   <a>
@@ -127,6 +144,7 @@ export default function Home({ genres }: HomeProps) {
           lastPage={data?.totalPages}
           currentPage={page}
           onPageChange={setPage}
+          resetSelectedGenres={setSelectedGenres}
         />
       )}
     </Container>
